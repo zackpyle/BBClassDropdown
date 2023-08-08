@@ -27,4 +27,26 @@ jQuery(document).ready(function($) {
         disableUsedClasses();
     });
 
+    // // Current doesn't matter until we can get data attr on <optgroup> - then we can test if this works
+	// function handleSingleClassSelection() {
+    //     $('.class-select').each(function() {
+    //         var select = $(this);
+    //         if (select.data('single-selection') === true) {
+    //             select.off('change.singleSelection').on('change.singleSelection', function() {
+    //                 var optgroup = select.find('option:selected').parent('optgroup');
+    //                 var optgroupLabel = optgroup.attr('label');
+
+    //                 $('.class-select').each(function() {
+    //                     var otherSelect = $(this);
+    //                     if (otherSelect[0] !== select[0] && otherSelect.data('single-selection') === true) {
+    //                         otherSelect.find('optgroup[label="' + optgroupLabel + '"] option:selected').prop('selected', false);
+    //                     }
+    //                 });
+    //             });
+    //         }
+    //     });
+    // }
+
+    // handleSingleClassSelection();
+
 });
