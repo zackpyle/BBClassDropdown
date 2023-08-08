@@ -26,27 +26,5 @@ jQuery(document).ready(function($) {
         console.log('Class selected');
         disableUsedClasses();
     });
-	
-    // // Current doesn't work until we can get data attr on <optgroup>
-	// function handleSingleClassSelection() {
-    //     $('.class-select').each(function() {
-    //         var select = $(this);
-    //         if (select.data('single-selection') === true) {
-    //             select.off('change.singleSelection').on('change.singleSelection', function() {
-    //                 var optgroup = select.find('option:selected').parent('optgroup');
-    //                 var optgroupLabel = optgroup.attr('label');
 
-    //                 $('.class-select').each(function() {
-    //                     var otherSelect = $(this);
-    //                     if (otherSelect[0] !== select[0] && otherSelect.data('single-selection') === true) {
-    //                         otherSelect.find('optgroup[label="' + optgroupLabel + '"] option:selected').prop('selected', false);
-    //                     }
-    //                 });
-    //             });
-    //         }
-    //     });
-    // }
-
-    // // Assume that the 'data-single-selection' attribute is set to 'true' for groups with single selection enabled
-    // handleSingleClassSelection();
 });
