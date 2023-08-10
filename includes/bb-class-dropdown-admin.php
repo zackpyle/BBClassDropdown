@@ -44,10 +44,10 @@ function beaver_builder_class_dropdown_settings_page_html() {
 					<tr class="group">
 						<td valign="top">
 							<input type="text" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][name]" value="<?php echo array_key_exists('name', $group) ? esc_attr( $group['name'] ) : ""; ?>" />
-							<!-- Option to have group be only a single class at a time - useful for something like a background color -->
+							<!-- Option to have group be only a single class at a time - useful for something like a background color or headline level style -->
 							<div class="single-select-wrapper">
 								<input type="checkbox" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][singleton]" value="1" <?php checked( isset($group['singleton']) ? $group['singleton'] : 0 ); ?> />
-								<label for="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][singleton]">Single Select Classes</label>
+								<label for="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][singleton]">Single Class Select Group</label>
 							<div>
 						</td>
 						<td>
@@ -91,7 +91,7 @@ function beaver_builder_class_dropdown_settings_page_html() {
 			<section id="select2-settings">
 				<h2>Select2 Settings</h2>
 				<p>
-					<input id="select2_enabled" name="beaver_builder_class_dropdown_options[select2_enabled]" type="checkbox" <?php checked( isset($options['select2_enabled']) ? $options['select2_enabled'] : 0 ); ?> />
+					<input id="select2_enabled" name="beaver_builder_class_dropdown_options[select2_enabled]" type="checkbox" <?php checked( isset($options['select2_enabled']) ? $options['select2_enabled'] : 1 ); ?> />
 					<label for="select2_enabled">Enable Select2</label>
 				</p>
 			</section>
