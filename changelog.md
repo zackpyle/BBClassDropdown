@@ -3,6 +3,7 @@
 - Feature - Fix for insertion of classes that are prefix of other classes. eg. if `uk-flex-center` already exists, you couln't add `uk-flex` later with callback handled by BB in (current) version 2.7.1.1
 - Some code cleanup
 - Renamed singleton checkbox from `checkbox` to `singleton` in all code.
+- Select2 is enabled by default
 
 *1.3.3 - 8/7/23*
 - Bug - SVG that holds symbols is taking up space on other tabs
