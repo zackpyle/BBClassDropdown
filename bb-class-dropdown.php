@@ -12,15 +12,27 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/bb-class-dropdown-admin.ph
 
 // Enqueue scripts
 function beaver_builder_class_dropdown_enqueue_scripts() {
+
+    // no need to load this if BB isn't available
+    if ( !class_exists( 'FLBuilderModel' ) ) return;
+
     wp_enqueue_script( 'bb-class-dropdown-scripts', plugin_dir_url( __FILE__ ) . 'includes/js/bb-class-dropdown-admin-scripts.js', array( 'jquery' ), false, true );
 }
 add_action( 'admin_enqueue_scripts', 'beaver_builder_class_dropdown_enqueue_scripts' );
 
 function bb_class_frontend_scripts() {
+
+    // no need to load this if BB isn't available or not in builder
+    if ( !class_exists( 'FLBuilderModel' ) || !\FLBuilderModel::is_builder_active() ) return;
+
     // Only load scripts if user is logged in
     if ( is_user_logged_in() ) {
 		// Custom JS
 		wp_enqueue_script( 'bb-class-dropdown-frontend-script', plugin_dir_url( __FILE__ ) . 'includes/js/bb-class-dropdown-frontend-script.js', array( 'jquery' ), '1.0', true );
+
+        $options = get_option( 'beaver_builder_class_dropdown_options' , [] );
+
+        wp_localize_script( 'bb-class-dropdown-frontend-script' , 'BBClassOptions' , array( "options" => $options ) );
     }
 }
 add_action( 'wp_enqueue_scripts', 'bb_class_frontend_scripts' );
@@ -28,6 +40,10 @@ add_action( 'wp_enqueue_scripts', 'bb_class_frontend_scripts' );
 
 
 function bb_class_frontend_select2() {
+
+    // no need to load this if BB isn't available or not in builder
+    if ( !class_exists( 'FLBuilderModel' ) || !\FLBuilderModel::is_builder_active() ) return;
+
 	// Get options
 	$options = get_option( 'beaver_builder_class_dropdown_options', array() );
 	$select2_enabled = isset($options['select2_enabled']) ? $options['select2_enabled'] : 0;

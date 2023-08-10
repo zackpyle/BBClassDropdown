@@ -14,7 +14,7 @@ function beaver_builder_class_dropdown_class_class_dropdown( $field, $field_key 
         foreach ( $options['groups'] as $group ) {
             if (isset($group['name'])) {
                 $optgroup = array(
-                    'label' => esc_html( $group['name'] ),
+                    'label' => esc_html( $group['name']),
                     'options' => array(),
                 );
 				
