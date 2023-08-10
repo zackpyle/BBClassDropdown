@@ -4,8 +4,8 @@ jQuery(document).ready(function($) {
         '<tr class="group">' +
         '   <td valign="top"><input type="text" name="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][name]" placeholder="Group Name" value="" />' +
 		'       <div class="single-select-wrapper">' +
-        '           <input type="checkbox" name="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][checkbox]" value="1" />' +
-        '           <label for="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][checkbox]">Single Select Classes</label>' +
+        '           <input type="checkbox" name="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][singleton]" value="1" />' +
+        '           <label for="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][singleton]">Single Select Classes</label>' +
         '       </div>' +
 		'	</td>' +
         '   <td>' +

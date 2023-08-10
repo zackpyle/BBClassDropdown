@@ -15,7 +15,7 @@ const BBClassDropdown = {
             let groupData = BBClassOptions.options.groups[group];
             classDropdown.querySelector( `optgroup[label="${groupData.name}"]` ).setAttribute( 'groupname' , groupData.name );
             // check if typeof because if it isn't it doesn't exist!
-            if ( typeof groupData.checkbox == 'string' ) {
+            if ( typeof groupData.singleton == 'string' ) {
                 classDropdown.querySelector( `optgroup[label="${groupData.name}"]` ).setAttribute( 'singleton' , 1 );
                 // now change the label so we can see we can only click once!
                 classDropdown.querySelector( `optgroup[label="${groupData.name}"]` ).label = `${groupData.name} (*)`;

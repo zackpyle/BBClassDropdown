@@ -46,8 +46,8 @@ function beaver_builder_class_dropdown_settings_page_html() {
 							<input type="text" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][name]" value="<?php echo array_key_exists('name', $group) ? esc_attr( $group['name'] ) : ""; ?>" />
 							<!-- Option to have group be only a single class at a time - useful for something like a background color -->
 							<div class="single-select-wrapper">
-								<input type="checkbox" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][checkbox]" value="1" <?php checked( isset($group['checkbox']) ? $group['checkbox'] : 0 ); ?> />
-								<label for="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][checkbox]">Single Select Classes</label>
+								<input type="checkbox" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][singleton]" value="1" <?php checked( isset($group['singleton']) ? $group['singleton'] : 0 ); ?> />
+								<label for="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][singleton]">Single Select Classes</label>
 							<div>
 						</td>
 						<td>
