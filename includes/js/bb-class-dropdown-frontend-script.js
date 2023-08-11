@@ -15,11 +15,11 @@ const BBClassDropdown = {
 			let groupData = BBClassOptions.options.groups[group];
 			let optGroupElement = classDropdown.querySelector( `optgroup[label="${groupData.name}"]` );
 			optGroupElement.setAttribute( 'groupname' , groupData.name );
-            // check if typeof because if it isn't it doesn't exist!
+            		// check if typeof because if it isn't it doesn't exist!
 			if ( typeof groupData.singleton == 'string' ) {
 				optGroupElement.setAttribute( 'singleton' , 1 );
 				optGroupElement.label = `${groupData.name}`;
-                // prepend symbol to each option
+                		// prepend symbol to each option
 				optGroupElement.querySelectorAll('option').forEach(option => {
 					option.text = '○ ' + option.text; 
 				});
@@ -75,16 +75,16 @@ const BBClassDropdown = {
 		// if it doesn't, we can simply add it
 		let intersection = currentClasses.filter( v => classes.includes(v));
 
-        /*
-         * figure out what to do:
-         *      append: 1. classname is in group with 'checkbox' but none of the others is in the array
-         *              2. classname is in group that doesn't have checkbox
-         * 
-         *      replace: 1. classname is in group with 'checkbox', there's also a 
-         *                      classname already in there that is in same group
-         * 
-         *      do nothing: when classname is not in group with checkbox and already in array
-         */
+	        /*
+	         * figure out what to do:
+	         *      append: 1. classname is in group with 'checkbox' but none of the others is in the array
+	         *              2. classname is in group that doesn't have checkbox
+	         * 
+	         *      replace: 1. classname is in group with 'checkbox', there's also a 
+	         *                      classname already in there that is in same group
+	         * 
+	         *      do nothing: when classname is not in group with checkbox and already in array
+	         */
 
 		if ( optGroup.attributes?.singleton && intersection.length ) {
 			// get the value of the intersection (it should be just one)
@@ -108,10 +108,10 @@ const BBClassDropdown = {
 		} else {
 			// Adding selected value to target text field only once
             
-            // compare our currentClasses to our clicked class, not just the indexof;
-            // this leads to errors when there's already a classname called 'uk-flex-center'
-            // and you're trying to add in a classname called 'uk-flex'. indexof 'uk-flex' will have
-            // a hit and you wouldn't be able to add it
+			// compare our currentClasses to our clicked class, not just the indexof;
+			// this leads to errors when there's already a classname called 'uk-flex-center'
+			// and you're trying to add in a classname called 'uk-flex'. indexof 'uk-flex' will have
+			// a hit and you wouldn't be able to add it
 			if ( !currentClasses.filter( v => [ addingValue ].includes(v)).length ) {
 
 				newValue = ( currentValue.trim() + ' ' + addingValue.trim() ).trim();
@@ -160,7 +160,7 @@ jQuery(document).ready(function($) {
         });
 		
 		// This kinda fixes the problem, but not entirely - it only adds the ● after you click in the <select> a first time
-        // Based on my tests, my guess is the singleton attr isn't added yet when it loads the first time
+        	// Based on my tests, my guess is the singleton attr isn't added yet when it loads the first time
 		$('optgroup[singleton="1"]').each(function() {
 			console.log('loop over singleton optgroups')
 			// Iterate over each option within the optgroup
