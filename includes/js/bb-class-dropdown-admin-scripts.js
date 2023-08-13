@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
 		'   <td valign="top" class="class-col">' +
 		'       <table class="beaver-builder-class-dropdown-classes">' +
 		'           <tbody>' +
-   		'               __CLASS_TEMPLATE__' +
+		'               __CLASS_TEMPLATE__' +
 		'           </tbody>' +
 		'       </table>' +
 		'       <button type="button" class="button beaver-builder-class-dropdown-add-class"><svg aria-hidden="true" width="12" height="12"><use xlink:href="#plus" /></svg></button>' +
