@@ -3,6 +3,7 @@
 - New table layout / styles
 - Made the code more DRY
 - First class or group can now be deleted if not only-child
+- Don't need to confirm to delete an empty group
 - Bug fixes
 
 *1.4.0 - 8/10/23*
