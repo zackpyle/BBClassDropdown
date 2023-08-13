@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
 	$('.beaver-builder-class-dropdown-groups > tbody > tr.group').each(function(index) {
 	    $(this).find('.group-order').val(index);
 	});
-		console.log('Hidden input group order updated.');
+		// console.log('Hidden input group order updated.');
 	}
 	
 	// Function to update hidden input values for class order within a group
@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
 		$classes_table.find('tr.class-row').each(function(index) {
 			$(this).find('.class-order').val(index);
 		});
-		console.log('Hidden input class order updated.');
+		// console.log('Hidden input class order updated.');
 	}
 	
 	// Bind group reorder event
