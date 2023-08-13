@@ -47,7 +47,7 @@ function beaver_builder_class_dropdown_settings_page_html() {
 							<!-- Drag-and-drop handle -->
 							<div class="drag-handle"></div> 
 							<!-- Hidden input for ordering -->
-              <input class="group-order" type="hidden" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][order]" value="<?php echo $i; ?>" />
+              						<input class="group-order" type="hidden" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][order]" value="<?php echo $i; ?>" />
 						</td>
 						<td valign="top" class="group-name-col">
 							<input class="group-name" type="text" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][name]" value="<?php echo array_key_exists('name', $group) ? esc_attr( $group['name'] ) : ""; ?>" />
@@ -66,9 +66,9 @@ function beaver_builder_class_dropdown_settings_page_html() {
 							<table class="beaver-builder-class-dropdown-classes">
 								<tbody>
 									<?php 
-			if (isset($group['classes']) && is_array($group['classes'])) {
-				foreach ( $group['classes'] as $j => $class ) :
-				if(is_array($class)) { // Add this line to check if $class is an array
+						if (isset($group['classes']) && is_array($group['classes'])) {
+							foreach ( $group['classes'] as $j => $class ) :
+							if(is_array($class)) { // Add this line to check if $class is an array
 									?>
 									<tr class="class-row" valign="top">
 										<td class="class-handle" valign="top">
@@ -89,9 +89,9 @@ function beaver_builder_class_dropdown_settings_page_html() {
 									</tr>
 									
 									<?php
-				} // Closing bracket for if(is_array($class))
-				endforeach;
-			}
+							} // Closing bracket for if(is_array($class))
+							endforeach;
+						}
 									?>
 								</tbody>
 							</table>
@@ -151,7 +151,6 @@ function beaver_builder_class_dropdown_settings_page_html() {
 			margin-top: 20px;
 			border-collapse: collapse;
 		}
-
 		.beaver-builder-class-dropdown-groups tr.group:not(:first-child) > td {
 			padding-top: 20px;
 		}
