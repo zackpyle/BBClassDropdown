@@ -9,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name: Beaver Builder Class Dropdown
  * Description: Adds user defined CSS classes to dropdown below the Beaver Builder class input in the Advanced tab
- * Version:     1.4.0
+ * Version:     1.5.0
  * Author:      PYLE/DIGITAL
  * Text Domain: textdomain
  * License:     GPL-2.0+
@@ -17,7 +17,7 @@
  */
 
 
-define( 'BBCLASSDROPDOWN_VERSION', '1.4.0' );
+define( 'BBCLASSDROPDOWN_VERSION', '1.5.0' );
 define( 'BBCLASSDROPDOWN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BBCLASSDROPDOWN_FILE', __FILE__ );
 define( 'BBCLASSDROPDOWN_URL', plugins_url( '/', __FILE__ ) );
@@ -40,18 +40,22 @@ add_action( 'init', 'clear_bb_options' );
  */
 function maybe_load_scripts() {
 
-        // no need to load this if BB isn't even available
-        if ( !class_exists( 'FLBuilderModel' ) ) return;
+    // no need to load this if BB isn't even available
+    if ( !class_exists( 'FLBuilderModel' ) ) return;
 
         add_action( 'admin_enqueue_scripts',                    'beaver_builder_class_dropdown_enqueue_scripts' );
         add_action( 'wp_enqueue_scripts',                       'bb_class_frontend_scripts' );
         add_action( 'wp_enqueue_scripts',                       'bb_class_frontend_select2' );
+		
+	// Enqueue jQuery UI for admin area
+	add_action('admin_enqueue_scripts', 'enqueue_jquery_ui_sortable');
 
         // Add admin settings tab to Beaver Builder
         add_action('fl_builder_admin_settings_nav_items',       'bb_class_dropdown_menu_item');
         add_action('fl_builder_admin_settings_render_forms',    'bb_class_dropdown_add_settings_form');
         add_action('fl_builder_admin_settings_save',            'bb_class_dropdown_admin_settings_save');
 }
+
 
 /**
  * beaver_builder_class_dropdown_enqueue_scripts
@@ -119,13 +123,14 @@ function bb_class_frontend_select2() {
         // Select2
         if ( ! wp_script_is( 'select2', 'enqueued' ) ) {
             // Enqueue the script.
-            wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array( 'jquery' ), '4.0.13', true );
+            wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array( 'jquery' ), '4.1.0', true );
         }
     
         if ( ! wp_style_is( 'select2', 'enqueued' ) ) {
             // Enqueue the style.
-            wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.0.13' );
+            wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0' );
         }
+
 
         // Custom JS
         wp_enqueue_script( 
@@ -136,6 +141,14 @@ function bb_class_frontend_select2() {
             true 
         );
     }
+}
+
+function enqueue_jquery_ui_sortable() {
+    // Enqueue jQuery UI core
+    wp_enqueue_script('jquery-ui-core');
+    
+    // Enqueue jQuery UI sortable module
+    wp_enqueue_script('jquery-ui-sortable');
 }
 
 /**

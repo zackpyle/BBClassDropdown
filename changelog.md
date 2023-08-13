@@ -1,3 +1,10 @@
+*1.5 - 8/12/23*
+- Drag and Drop reorder functionality for both Groups and Classes inside of Groups
+- New table layout / styles
+- Made the code more DRY
+- First class or group can now be deleted if not only-child
+- Bug fixes
+
 *1.4.0 - 8/10/23*
 - Feature - On groups with single selection substitute previous selected classname from optgroup with selection
 - Feature - Fix for insertion of classes that are prefix of other classes. eg. if `uk-flex-center` already exists, you couln't add `uk-flex` later with callback handled by BB in (current) version 2.7.1.1
