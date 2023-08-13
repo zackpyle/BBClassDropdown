@@ -47,8 +47,8 @@ function maybe_load_scripts() {
         add_action( 'wp_enqueue_scripts',                       'bb_class_frontend_scripts' );
         add_action( 'wp_enqueue_scripts',                       'bb_class_frontend_select2' );
 		
-		// Enqueue jQuery UI for admin area
-		add_action('admin_enqueue_scripts', 'enqueue_jquery_ui_sortable');
+	// Enqueue jQuery UI for admin area
+	add_action('admin_enqueue_scripts', 'enqueue_jquery_ui_sortable');
 
         // Add admin settings tab to Beaver Builder
         add_action('fl_builder_admin_settings_nav_items',       'bb_class_dropdown_menu_item');
@@ -123,12 +123,12 @@ function bb_class_frontend_select2() {
         // Select2
         if ( ! wp_script_is( 'select2', 'enqueued' ) ) {
             // Enqueue the script.
-            wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array( 'jquery' ), '4.0.13', true );
+            wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array( 'jquery' ), '4.1.0', true );
         }
     
         if ( ! wp_style_is( 'select2', 'enqueued' ) ) {
             // Enqueue the style.
-            wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.0.13' );
+            wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0' );
         }
 
 
