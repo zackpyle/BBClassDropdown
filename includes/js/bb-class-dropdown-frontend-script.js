@@ -191,5 +191,10 @@ jQuery(document).ready(function($) {
 		clearTimeout( timeout );
 		timeout = setTimeout( function() {disableUsedClasses();} , 250 );
 	});
+
+	// listen for changes on the class select field
+	$('body', window.parent.document).on( 'change', '.fl-builder-settings:visible .fl-text-field-add-value', function() {
+	    disableUsedClasses();
+	});
 	
 });
