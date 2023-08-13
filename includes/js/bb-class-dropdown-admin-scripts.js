@@ -95,10 +95,23 @@ jQuery(document).ready(function($) {
 	function bindRemoveGroupEvent() {
 		$(document).off('click', '.beaver-builder-class-dropdown-remove-group');
 		$(document).on('click', '.beaver-builder-class-dropdown-remove-group', function() {
-		    if (window.confirm("Are you sure you want to delete this group?")) {
-					$(this).closest('tr.group').remove();
-					updateHiddenInputGroupOrder();
+			var $groupRow = $(this).closest('.group');
+			var $groupNameInput = $groupRow.find('.group-name');
+			var groupHasName = $groupNameInput.val();
+
+			var groupHasClasses = false;
+			$groupRow.find('.beaver-builder-class-dropdown-classes tbody tr').each(function() {
+				var $classInputs = $(this).find('.class-value-col input, .class-label-col input');
+				if ($classInputs.filter(function() { return $(this).val(); }).length > 0) {
+					groupHasClasses = true;
+					return false; // Exit the loop early since we found a non-empty class
 				}
+			});
+
+			if ((!groupHasName && !groupHasClasses) || window.confirm("Are you sure you want to delete this group?")) {
+				$groupRow.remove();
+				updateHiddenInputGroupOrder();
+			}
 		});
 	}
 	
@@ -110,12 +123,12 @@ jQuery(document).ready(function($) {
 	// Add new group + dynamically add 'delete group' button
 	$('.beaver-builder-class-dropdown-add-group').on('click', function() {
 		var group_index = $('.beaver-builder-class-dropdown-groups > tbody > tr').length;
-        	var group_html = group_template.replace(/__GROUP_INDEX__/g, group_index);
+		var group_html = group_template.replace(/__GROUP_INDEX__/g, group_index);
 		var $newGroupRow = $(group_html); // Capture the newly added group row
-        	$('.beaver-builder-class-dropdown-groups > tbody').append(group_html);
+		$('.beaver-builder-class-dropdown-groups > tbody').append(group_html);
 		bindRemoveGroupEvent();
 		bindGroupReorderEvent();
-        	updateHiddenInputGroupOrder();
+		updateHiddenInputGroupOrder();
 		addClassesReorderingAndDeleteButtons($newGroupRow);
 	});
 	
@@ -129,7 +142,7 @@ jQuery(document).ready(function($) {
             .replace(/__GROUP_INDEX__/g, group_index)
             .replace(/__CLASS_INDEX__/g, class_index);
         $classes_table.append(class_html);
-	bindClassReorderEvent($classes_table);
+		bindClassReorderEvent($classes_table);
     	updateHiddenInputClassOrder($classes_table);
     });
 
