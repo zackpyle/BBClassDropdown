@@ -30,27 +30,27 @@ jQuery(document).ready(function($) {
 		'   </td>' +
 		'</tr>';
   
-    var class_template = '' +
-        '<tr class="class-row" valign="top">' +
-		'   <td class="class-handle" valign="top">' +
-		'       <!-- Drag-and-drop handle -->' +
-		'       <div class="drag-handle"></div>' +
-		'   </td>' +
-        '   <td class="class-value-col"><input type="text" name="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][classes][__CLASS_INDEX__][id]" placeholder="foo-bar" value="" /></td>' +
-        '   <td class="class-label-col"><input type="text" name="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][classes][__CLASS_INDEX__][name]" placeholder="Foo Bar" value="" /></td>' +
-        '   <td class="class-btn-col"><button type="button" class="button beaver-builder-class-dropdown-remove-class"><svg aria-hidden="true" width="15" height="15"><use xlink:href="#trash" /></svg></button></td>' +
-        '</tr>';
+	var class_template = '' +
+	'<tr class="class-row" valign="top">' +
+	'	<td class="class-handle" valign="top">' +
+	'           <!-- Drag-and-drop handle -->' +
+	'           <div class="drag-handle"></div>' +
+	'	</td>' +
+	'   <td class="class-value-col"><input type="text" name="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][classes][__CLASS_INDEX__][id]" placeholder="foo-bar" value="" /></td>' +
+	'   <td class="class-label-col"><input type="text" name="beaver_builder_class_dropdown_options[groups][__GROUP_INDEX__][classes][__CLASS_INDEX__][name]" placeholder="Foo Bar" value="" /></td>' +
+	'   <td class="class-btn-col"><button type="button" class="button beaver-builder-class-dropdown-remove-class"><svg aria-hidden="true" width="15" height="15"><use xlink:href="#trash" /></svg></button></td>' +
+	'</tr>';
 	
 	// Use class_template inside of group_template while maintaining the necessary dynamic index replacements for both groups and classes
 	group_template = group_template.replace('__CLASS_TEMPLATE__', class_template);
 	
 	// Function to update hidden input values for group order
 	function updateHiddenInputGroupOrder() {
-        $('.beaver-builder-class-dropdown-groups > tbody > tr.group').each(function(index) {
-            $(this).find('.group-order').val(index);
-        });
+	$('.beaver-builder-class-dropdown-groups > tbody > tr.group').each(function(index) {
+	    $(this).find('.group-order').val(index);
+	});
 		console.log('Hidden input group order updated.');
-    }
+	}
 	
 	// Function to update hidden input values for class order within a group
 	function updateHiddenInputClassOrder($classes_table) {
@@ -92,30 +92,30 @@ jQuery(document).ready(function($) {
 	}
 
 	// Bind remove group event
-    function bindRemoveGroupEvent() {
-        $(document).off('click', '.beaver-builder-class-dropdown-remove-group');
-        $(document).on('click', '.beaver-builder-class-dropdown-remove-group', function() {
-            if (window.confirm("Are you sure you want to delete this group?")) {
-				$(this).closest('tr.group').remove();
-				updateHiddenInputGroupOrder();
-			}
-        });
-    }
+	function bindRemoveGroupEvent() {
+		$(document).off('click', '.beaver-builder-class-dropdown-remove-group');
+		$(document).on('click', '.beaver-builder-class-dropdown-remove-group', function() {
+		    if (window.confirm("Are you sure you want to delete this group?")) {
+					$(this).closest('tr.group').remove();
+					updateHiddenInputGroupOrder();
+				}
+		});
+	}
 	
 	// Initialize events for group reordering
-    bindRemoveGroupEvent();
-    bindGroupReorderEvent();
+	bindRemoveGroupEvent();
+	bindGroupReorderEvent();
 	bindClassReorderEvent();
 	
 	// Add new group + dynamically add 'delete group' button
 	$('.beaver-builder-class-dropdown-add-group').on('click', function() {
 		var group_index = $('.beaver-builder-class-dropdown-groups > tbody > tr').length;
-        var group_html = group_template.replace(/__GROUP_INDEX__/g, group_index);
+        	var group_html = group_template.replace(/__GROUP_INDEX__/g, group_index);
 		var $newGroupRow = $(group_html); // Capture the newly added group row
-        $('.beaver-builder-class-dropdown-groups > tbody').append(group_html);
+        	$('.beaver-builder-class-dropdown-groups > tbody').append(group_html);
 		bindRemoveGroupEvent();
 		bindGroupReorderEvent();
-        updateHiddenInputGroupOrder();
+        	updateHiddenInputGroupOrder();
 		addClassesReorderingAndDeleteButtons($newGroupRow);
 	});
 	
@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
             .replace(/__GROUP_INDEX__/g, group_index)
             .replace(/__CLASS_INDEX__/g, class_index);
         $classes_table.append(class_html);
-		bindClassReorderEvent($classes_table);
+	bindClassReorderEvent($classes_table);
     	updateHiddenInputClassOrder($classes_table);
     });
 
