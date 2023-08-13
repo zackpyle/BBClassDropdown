@@ -31,7 +31,7 @@ register_activation_hook( BBCLASSDROPDOWN_FILE, 'beaver_builder_class_dropdown_p
 
 
 add_action( 'init', 'maybe_load_scripts' );
-add_action( 'init', 'clear_bb_options' );
+add_action( 'init', 'clear_bb_class_options' );
 
 /**
  * maybe_load_scripts
@@ -187,14 +187,14 @@ function beaver_builder_class_dropdown_plugin_activate() {
 
 
 /**
- * clear_bb_options
+ * clear_bb_class_options
  *
- * Clear all existing classes by navigating to /?clear_bb_options=1
+ * Clear all existing classes by navigating to /?clear_bb_class_options=1
  * 
  * @return void
  */
-function clear_bb_options() {
-    if (isset($_GET['clear_bb_options'])) {
+function clear_bb_class_options() {
+    if (isset($_GET['clear_bb_class_options'])) {
         delete_option('beaver_builder_class_dropdown_options');
         echo esc_html__( 'Options cleared!', 'textdomain' );
         die();
