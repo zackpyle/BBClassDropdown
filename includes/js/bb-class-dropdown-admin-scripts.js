@@ -84,7 +84,6 @@ jQuery(document).ready(function($) {
         });
     }
 	
-	
 	// Add classes reordering and delete buttons to a new group
 	function addClassesReorderingAndDeleteButtons($groupRow) {
 		var $classes_table = $groupRow.find('.beaver-builder-class-dropdown-classes tbody');
@@ -108,7 +107,6 @@ jQuery(document).ready(function($) {
     bindGroupReorderEvent();
 	bindClassReorderEvent();
 	
-	
 	// Add new group + dynamically add 'delete group' button
 	$('.beaver-builder-class-dropdown-add-group').on('click', function() {
 		var group_index = $('.beaver-builder-class-dropdown-groups > tbody > tr').length;
@@ -120,7 +118,6 @@ jQuery(document).ready(function($) {
         updateHiddenInputGroupOrder();
 		addClassesReorderingAndDeleteButtons($newGroupRow);
 	});
-	
 	
 	// Add new class within a group
     $(document).on('click', '.beaver-builder-class-dropdown-add-class', function() {
@@ -135,7 +132,7 @@ jQuery(document).ready(function($) {
 		bindClassReorderEvent($classes_table);
     	updateHiddenInputClassOrder($classes_table);
     });
-  
+
     // Remove class within a group
     $(document).on('click', '.beaver-builder-class-dropdown-remove-class', function() {
         var $groupRow = $(this).closest('.group');
