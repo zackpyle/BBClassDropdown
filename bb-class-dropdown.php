@@ -40,8 +40,8 @@ add_action( 'init', 'clear_bb_options' );
  */
 function maybe_load_scripts() {
 
-        // no need to load this if BB isn't even available
-        if ( !class_exists( 'FLBuilderModel' ) ) return;
+    // no need to load this if BB isn't even available
+    if ( !class_exists( 'FLBuilderModel' ) ) return;
 
         add_action( 'admin_enqueue_scripts',                    'beaver_builder_class_dropdown_enqueue_scripts' );
         add_action( 'wp_enqueue_scripts',                       'bb_class_frontend_scripts' );
@@ -55,6 +55,7 @@ function maybe_load_scripts() {
         add_action('fl_builder_admin_settings_render_forms',    'bb_class_dropdown_add_settings_form');
         add_action('fl_builder_admin_settings_save',            'bb_class_dropdown_admin_settings_save');
 }
+
 
 /**
  * beaver_builder_class_dropdown_enqueue_scripts
@@ -130,6 +131,7 @@ function bb_class_frontend_select2() {
             wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.0.13' );
         }
 
+
         // Custom JS
         wp_enqueue_script( 
             'bb-class-dropdown-select2', 
@@ -148,7 +150,6 @@ function enqueue_jquery_ui_sortable() {
     // Enqueue jQuery UI sortable module
     wp_enqueue_script('jquery-ui-sortable');
 }
-
 
 /**
  * beaver_builder_class_dropdown_activate

@@ -29,7 +29,6 @@ jQuery(document).ready(function($) {
 		'       <button type="button" class="button beaver-builder-class-dropdown-add-class"><svg aria-hidden="true" width="12" height="12"><use xlink:href="#plus" /></svg></button>' +
 		'   </td>' +
 		'</tr>';
-
   
     var class_template = '' +
         '<tr class="class-row" valign="top">' +

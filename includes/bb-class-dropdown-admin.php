@@ -47,7 +47,7 @@ function beaver_builder_class_dropdown_settings_page_html() {
 							<!-- Drag-and-drop handle -->
 							<div class="drag-handle"></div> 
 							<!-- Hidden input for ordering -->
-                    	<input class="group-order" type="hidden" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][order]" value="<?php echo $i; ?>" />
+              <input class="group-order" type="hidden" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][order]" value="<?php echo $i; ?>" />
 						</td>
 						<td valign="top" class="group-name-col">
 							<input class="group-name" type="text" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][name]" value="<?php echo array_key_exists('name', $group) ? esc_attr( $group['name'] ) : ""; ?>" />
@@ -113,7 +113,7 @@ function beaver_builder_class_dropdown_settings_page_html() {
 			<section id="select2-settings">
 				<h2>Select2 Settings</h2>
 				<p>
-					<input id="select2_enabled" name="beaver_builder_class_dropdown_options[select2_enabled]" type="checkbox" <?php checked( isset($options['select2_enabled']) ? $options['select2_enabled'] : 0 ); ?> />
+					<input id="select2_enabled" name="beaver_builder_class_dropdown_options[select2_enabled]" type="checkbox" <?php checked( isset($options['select2_enabled']) ? $options['select2_enabled'] : 1 ); ?> />
 					<label for="select2_enabled">Enable Select2</label>
 				</p>
 			</section>
