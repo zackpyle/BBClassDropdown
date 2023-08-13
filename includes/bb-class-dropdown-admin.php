@@ -198,8 +198,8 @@ function beaver_builder_class_dropdown_settings_page_html() {
 			min-height: unset;
 			padding: 0;
 		}
-		.beaver-builder-class-dropdown-groups .group:first-child .beaver-builder-class-dropdown-remove-group,
-		.beaver-builder-class-dropdown-classes tr:first-child .beaver-builder-class-dropdown-remove-class {
+		.beaver-builder-class-dropdown-groups .group:only-child .beaver-builder-class-dropdown-remove-group,
+		.beaver-builder-class-dropdown-classes tr:only-child .beaver-builder-class-dropdown-remove-class {
 			display: none;
 		}
 		.fl-settings-form .beaver-builder-class-dropdown-groups th{
