@@ -1,3 +1,12 @@
+*1.5 - 8/12/23*
+- Drag and Drop reorder functionality for both Groups and Classes inside of Groups
+- New table layout / styles
+- Made the code more DRY
+- First class or group can now be deleted if not only-child
+- Bug fixes
+
+*1.4 - reserved for in progress single select feature*
+
 *1.3.1 - 8/7/23*
 - Bug - SVG that holds symbols is taking up space on other tabs
 - Bug - Typo when linking to Select2
