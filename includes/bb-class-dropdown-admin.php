@@ -16,15 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 function beaver_builder_class_dropdown_settings_page_html() {
     // Get options
     $options = get_option( 'beaver_builder_class_dropdown_options', array() );
-
     // Render settings page
     ?>
+	
     <div id="fl-class-dropdown-form" class="fl-settings-form">
         <h1>Predefined Classes</h1>
         <form action="" method="post">
 			<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
-            <?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
-            <?php do_settings_sections( 'beaver_builder_class_dropdown_options_group' ); ?>
             <?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
             <?php do_settings_sections( 'beaver_builder_class_dropdown_options_group' ); ?>
 			<table class="beaver-builder-class-dropdown-groups">
@@ -47,18 +45,17 @@ function beaver_builder_class_dropdown_settings_page_html() {
 							<!-- Drag-and-drop handle -->
 							<div class="drag-handle"></div> 
 							<!-- Hidden input for ordering -->
-              						<input class="group-order" type="hidden" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][order]" value="<?php echo $i; ?>" />
+              						<input class="group-order" type="hidden" data-name="order" value="<?php echo $i; ?>" />
 						</td>
 						<td valign="top" class="group-name-col">
-							<input class="group-name" type="text" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][name]" value="<?php echo array_key_exists('name', $group) ? esc_attr( $group['name'] ) : ""; ?>" />
+							<input class="group-name" type="text" data-name="name" value="<?php echo array_key_exists('name', $group) ? esc_attr( $group['name'] ) : ""; ?>" />
 							<div class="group-options">
 								<button type="button" class="button beaver-builder-class-dropdown-remove-group">
 									<span class="sr-only">Delete Group</span><svg aria-hidden="true" width="13" height="13"><use xlink:href="#trash" /></svg>
 								</button>
 								<!-- Option to have group be only a single class at a time - useful for something like a background color -->
 								<div class="single-select-wrapper">
-									<input type="checkbox" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][singleton]" value="1" <?php checked( isset($group['singleton']) ? $group['singleton'] : 0 ); ?> />
-									<label for="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][singleton]">Single Class Group</label>
+									<label><input type="checkbox" data-name="singleton" value="1" <?php checked( isset($group['singleton']) ? $group['singleton'] : 0 ); ?> /> Single Class Group</label>
 								</div>
 							</div>
 						</td>
@@ -75,10 +72,10 @@ function beaver_builder_class_dropdown_settings_page_html() {
 											<!-- Drag-and-drop handle -->
 											<div class="drag-handle"></div>
 											<!-- Hidden input for ordering -->
-											<input class="class-order" type="hidden" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][classes][<?php echo $j; ?>][order]" value="<?php echo $j; ?>" />
+											<input class="class-order" type="hidden" data-name="order" value="<?php echo $j; ?>" />
 										</td>
-										<td class="class-value-col"><input type="text" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][classes][<?php echo $j; ?>][id]" placeholder="foo-bar" value="<?php echo array_key_exists('id', $class) ? esc_attr( $class['id'] ) : ""; ?>" /></td>
-										<td class="class-label-col"><input type="text" name="beaver_builder_class_dropdown_options[groups][<?php echo $i; ?>][classes][<?php echo $j; ?>][name]" placeholder="Foo Bar" value="<?php echo array_key_exists('name', $class) ? esc_attr( $class['name'] ) : ""; ?>" /></td>
+										<td class="class-value-col"><input type="text" data-name="id" placeholder="foo-bar" value="<?php echo array_key_exists('id', $class) ? esc_attr( $class['id'] ) : ""; ?>" /></td>
+										<td class="class-label-col"><input type="text" data-name="name" placeholder="Foo Bar" value="<?php echo array_key_exists('name', $class) ? esc_attr( $class['name'] ) : ""; ?>" /></td>
 										<td class="class-btn-col">
 											<button type="button" class="button beaver-builder-class-dropdown-remove-class">
 											<svg aria-hidden="true" width="13" height="13">
@@ -276,48 +273,66 @@ function beaver_builder_class_dropdown_settings_page_html() {
 }
 
 function bb_class_dropdown_admin_settings_save() {
-    if (isset($_POST['bb-class-dd-nonce']) && wp_verify_nonce($_POST['bb-class-dd-nonce'], 'bb-class-dd-nonce')) {
-        $settings = isset($_POST['beaver_builder_class_dropdown_options']) ? $_POST['beaver_builder_class_dropdown_options'] : array();
+	// return early when not set or nonce not matching
 
-        // Sanitize Select2 setting
-        $settings['select2_enabled'] = isset($settings['select2_enabled']) ? 1 : 0;
+    if ( !isset($_POST['bb-class-dd-nonce']) || !wp_verify_nonce($_POST['bb-class-dd-nonce'], 'bb-class-dd-nonce') ) return;
 
-        // Sanitize each group and class setting
-        if (isset($settings['groups']) && is_array($settings['groups'])) {
-            foreach ($settings['groups'] as $i => $group) {
-                $settings['groups'][$i]['name'] = isset($group['name']) ? sanitize_text_field($group['name']) : "";
+	// use filter input
+	//$settings = filter_input_array( INPUT_POST , 'beaver_builder_class_dropdown_options' ); 
+	$settings = isset($_POST['beaver_builder_class_dropdown_options']) ? $_POST['beaver_builder_class_dropdown_options'] : array();
 
-                if (isset($group['classes']) && is_array($group['classes'])) {
-                    // Create a temporary array to store classes in sequential order
-                    $sequential_classes = array();
+	// Sanitize Select2 setting
+	$settings['select2_enabled'] = isset($settings['select2_enabled']) ? 1 : 0;
 
-                    foreach ($group['classes'] as $j => $class) {
-                        $sequential_classes[] = array(
-                            'id' => isset($class['id']) ? sanitize_text_field($class['id']) : "",
-                            'name' => isset($class['name']) ? sanitize_text_field($class['name']) : "",
-                            'order' => isset($class['order']) ? intval($class['order']) : $j
-                        );
-                    }
+	$group_order = 0;
+	// Sanitize each group and class setting
+	if (isset($settings['groups']) && is_array($settings['groups'])) {
 
-                    // Replace the associative classes array with the sequential one
-                    $settings['groups'][$i]['classes'] = $sequential_classes;
-                }
+		foreach ($settings['groups'] as $group) {
 
-                // Update the order of the group
-                $settings['groups'][$i]['order'] = isset($group['order']) ? intval($group['order']) : $i;
-            }
+			// add our new group
+			$__new_groups[ $group_order ] = [];
+			
+			// set a name for this new group
+			$__new_groups[ $group_order ]['name'] = isset( $group['name'] ) ? sanitize_text_field( $group['name'] ) : "";
 
-            // Sort the groups based on the order
-            usort($settings['groups'], function ($a, $b) {
-                return $a['order'] - $b['order'];
-            });
-        }
+			if (isset($group['classes']) && is_array($group['classes'])) {
 
-        // Save to db
-        update_option('beaver_builder_class_dropdown_options', $settings);
+				// clear out our list of classes for this group
+				$classes = [];
+				
+				// start class order at 0
+				$class_order = 0;
+				foreach ($group['classes'] as $class) {
 
-        FLBuilderModel::delete_asset_cache_for_all_posts();
-    }
+					$classes[] = array(
+								'id' => isset($class['id']) ? sanitize_text_field($class['id']) : "",
+								'name' => isset($class['name']) ? sanitize_text_field($class['name']) : "",
+								'order' => $class_order,
+					);
+					// increment class_order
+					$class_order++;
+				}
+
+				// Replace the associative classes array with the sequential one
+				$__new_groups[ $group_order ]['classes'] = $classes;
+				$__new_groups[ $group_order ][ 'singleton' ] = isset( $group[ 'singleton' ] ) ? '1' : '0';
+			}
+			$__new_groups[ $group_order ][ 'order' ] = $group_order;
+			
+			// increment group_order
+			$group_order++;
+		}
+
+		$settings[ 'groups' ] = $__new_groups;
+		
+	}
+
+	// Save to db
+	update_option('beaver_builder_class_dropdown_options', $settings);
+
+	FLBuilderModel::delete_asset_cache_for_all_posts();
+    
 }
 
 
