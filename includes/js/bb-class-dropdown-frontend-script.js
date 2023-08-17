@@ -19,7 +19,7 @@ const BBClassDropdown = {
 			let optGroupElement = classDropdown.querySelector( `optgroup[label="${groupData.name}"]` );
 			optGroupElement.setAttribute( 'groupname' , groupData.name );
             		// check if typeof because if it isn't it doesn't exist!
-			if ( typeof groupData.singleton !== 'undefined' && groupData.singleton === 1 ) {
+			if ( typeof groupData.singleton !== 'undefined' && groupData.singleton == 1 ) {
 				optGroupElement.setAttribute( 'singleton' , 1 );
 				optGroupElement.label = `${groupData.name}`;
                 // prepend symbol to each option
