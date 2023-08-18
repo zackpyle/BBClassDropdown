@@ -159,9 +159,10 @@ jQuery(document).ready(function($) {
     
     // Function to disable already used classes in the dropdown
     function disableUsedClasses() {
-		// console.log('method disableUsedClasses started')
+    	if ( !$('.fl-builder-settings:visible input[name=class]').length ) return;
+	// console.log('method disableUsedClasses started')
 
-		// get the current classes in the input field
+	// get the current classes in the input field
         var currentClasses = $('.fl-builder-settings:visible input[name=class]').val().split(' ');
 
         // reset all the disabled attributes
@@ -177,7 +178,7 @@ jQuery(document).ready(function($) {
 		// now update the singleton options
 		BBClassDropdown.updateSingletonOptions();
 		// console.log('method disableUsedClasses ran')
-    }
+	}
 
 	// remove the default FLBuilder event handler that clears the value after it's done
 	$('body', window.parent.document).off( 'change', '.fl-text-field-add-value', FLBuilder._textFieldAddValueSelectChange);
