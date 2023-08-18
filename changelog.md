@@ -1,3 +1,6 @@
+*1.5.1 - 8/18/23*
+- JS refactoring by badabingbreda
+
 *1.5 - 8/12/23*
 - Drag and Drop reorder functionality for both Groups and Classes inside of Groups
 - New table layout / styles
