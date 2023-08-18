@@ -51,7 +51,7 @@ const BBClassDropdown = {
 						el.dataset.label; 
 		});
 
-		console.log('updating options');
+		// console.log('updating options');
 		// Update Select2 if enabled
 		if (classDropdown.classList.contains('select2-hidden-accessible')) {
 			// switch to jQuery to re-init the select2
@@ -146,7 +146,7 @@ const BBClassDropdown = {
 		}
 		
 		dropdown.val(''); // Resetting the selector
-		console.log( 'method handleDropdownSelection ran' );
+		// console.log( 'method handleDropdownSelection ran' );
 	},
 	
 };
@@ -159,7 +159,7 @@ jQuery(document).ready(function($) {
     
     // Function to disable already used classes in the dropdown
     function disableUsedClasses() {
-		console.log('method disableUsedClasses started')
+		// console.log('method disableUsedClasses started')
 
 		// get the current classes in the input field
         var currentClasses = $('.fl-builder-settings:visible input[name=class]').val().split(' ');
@@ -172,11 +172,11 @@ jQuery(document).ready(function($) {
 			// find the option with that value and set its disabled attribute to true
             $('.fl-text-field-add-value option[value="' + classname + '"]').prop('disabled', true);
         });
-		console.log('disabled existing classes')
+		// console.log('disabled existing classes')
 		
 		// now update the singleton options
 		BBClassDropdown.updateSingletonOptions();
-		console.log('method disableUsedClasses ran')
+		// console.log('method disableUsedClasses ran')
     }
 
 	// remove the default FLBuilder event handler that clears the value after it's done
