@@ -1,3 +1,6 @@
+*1.6.1 - 8/19/23*
+- Fixed - v1.5.2 patch forgot to include rows and columns in the secondary modal fix
+
 *1.6 - 8/19/23*
 - New Import/Export Settings feature
 
