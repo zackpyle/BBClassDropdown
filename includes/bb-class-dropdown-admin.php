@@ -117,19 +117,21 @@ function beaver_builder_class_dropdown_settings_page_html() {
 				<h2>Import/Export Settings</h2>
 				<button id="export-classes" class="button button-primary">Export Settings</button>
 				<button id="import-classes" class="button button-primary">Import Settings</button>
-				<dialog id="import-modal">
+				<dialog id="import-modal" onclick="event.target==this && this.close()">
 					<button id="close-import-modal" aria-label="Close Import Dialog">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<form action="" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
-						<input type="hidden" name="bb-class-action" value="import">
-						<?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
-					<?php do_settings_sections( 'beaver_builder_class_dropdown_options_group' ); ?>
-							<h3>Select JSON import file:</h3>
+					<div class="modal-content">
+						<h3>Select JSON import file:</h3>
+						<form action="" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
+							<input type="hidden" name="bb-class-action" value="import">
+							<?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
+							<?php do_settings_sections( 'beaver_builder_class_dropdown_options_group' ); ?>
 							<input type="file" name="fileToUpload" id="fileToUpload" accept="application/JSON">
 							<?php submit_button( 'Import Settings' ); ?>
-					</form>
+						</form>
+					</div>
 				</dialog>
 			</div>
 		</section>
@@ -290,6 +292,11 @@ function beaver_builder_class_dropdown_settings_page_html() {
 			text-align:right;
 		}
 		/* Import Export */
+		
+		
+		.modal-content{
+			padding:35px;
+		}
 		#bb-class-dd-settings{
 			margin-top:80px;
 		}
@@ -298,7 +305,7 @@ function beaver_builder_class_dropdown_settings_page_html() {
 			border-radius:5px;
 			box-shadow: 0 5px 10px rgb(0 0 0 / .25);
 			overflow:visible;
-			padding:35px;
+			padding:0;
 		}
 		#import-modal::backdrop {
 		  background: rgb(0 0 0 / 0.4);
