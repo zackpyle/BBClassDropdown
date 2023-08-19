@@ -9,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name: Beaver Builder Class Dropdown
  * Description: Adds user defined CSS classes to dropdown below the Beaver Builder class input in the Advanced tab
- * Version:     1.6
+ * Version:     1.6.1
  * Author:      PYLE/DIGITAL
  * Text Domain: textdomain
  * License:     GPL-2.0+
@@ -17,7 +17,7 @@
  */
 
 
-define( 'BBCLASSDROPDOWN_VERSION', '1.6' );
+define( 'BBCLASSDROPDOWN_VERSION', '1.6.1' );
 define( 'BBCLASSDROPDOWN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BBCLASSDROPDOWN_FILE', __FILE__ );
 define( 'BBCLASSDROPDOWN_URL', plugins_url( '/', __FILE__ ) );
