@@ -35,9 +35,12 @@ const BBClassDropdown = {
 	},
 
 	updateSingletonOptions : function() {
+
+		// make sure top module settings modal is active
+		if ( 'none' == jQuery('.fl-lightbox-wrap').css('display') ) return;
 		
 		// get current classes
-		const currentClasses = jQuery('.fl-builder-settings:visible input[name=class]').val().split(' ');
+		const currentClasses = jQuery('.fl-builder-module-settings:visible input[name=class]').val().split(' ');
 		const classDropdown = parent.window.document.querySelector( '[data-target="class"]' );
 		// loop over the opgroup that are singleton and add 'label' prefix;
 		classDropdown.querySelectorAll( 'optgroup[singleton] option' ).forEach(el => {
@@ -72,7 +75,7 @@ const BBClassDropdown = {
 			currentValue = textField.val(),
 			addingValue  = dropdown.val(),
 			newValue     = '',
-			currentClasses = $('.fl-builder-settings:visible input[name=class]').val().split(' ');
+			currentClasses = $('.fl-builder-module-settings:visible input[name=class]').val().split(' ');
 
 		// get the selected option
 		const selectedOption = this.options[ this.selectedIndex ];
@@ -159,11 +162,14 @@ jQuery(document).ready(function($) {
     
     // Function to disable already used classes in the dropdown
     function disableUsedClasses() {
-    	if ( !$('.fl-builder-settings:visible input[name=class]').length ) return;
-	// console.log('method disableUsedClasses started')
+		// make sure top module settings modal is active
+		if ( 'none' == $('.fl-lightbox-wrap').css('display') ) return;
 
-	// get the current classes in the input field
-        var currentClasses = $('.fl-builder-settings:visible input[name=class]').val().split(' ');
+    	if ( !$('.fl-builder-settings:visible input[name=class]').length ) return;
+		// console.log('method disableUsedClasses started')
+
+		// get the current classes in the input field
+        var currentClasses = $('.fl-builder-module-settings:visible input[name=class]').val().split(' ');
 
         // reset all the disabled attributes
         $('.fl-text-field-add-value option').prop('disabled', false);
@@ -187,7 +193,7 @@ jQuery(document).ready(function($) {
 	$('body', window.parent.document).on( 'change', '.fl-text-field-add-value', BBClassDropdown.handleDropdownSelection );
 
 	// listen for changes on the text-input class field
-	$('body', window.parent.document).on( 'change keyup', '.fl-builder-settings:visible input[name=class]', function() {
+	$('body', window.parent.document).on( 'change keyup', '.fl-builder-module-settings:visible input[name=class]', function() {
 		// use debounce to prevent too many changes when using the keyboard
 		clearTimeout( timeout );
 		timeout = setTimeout( function() {disableUsedClasses();} , 250 );
