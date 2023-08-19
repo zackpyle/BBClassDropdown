@@ -23,6 +23,7 @@ function beaver_builder_class_dropdown_settings_page_html() {
         <h1>Predefined Classes</h1>
         <form action="" method="post">
 			<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
+			<input type="hidden" name="bb-class-action" value="update">
             <?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
             <?php do_settings_sections( 'beaver_builder_class_dropdown_options_group' ); ?>
 			<table class="beaver-builder-class-dropdown-groups">
@@ -107,16 +108,28 @@ function beaver_builder_class_dropdown_settings_page_html() {
 				</tbody>
 			</table>
 			<button type="button" class="button beaver-builder-class-dropdown-add-group">Add Group</button>
-			<section id="select2-settings">
-				<h2>Select2 Settings</h2>
-				<p>
-					<input id="select2_enabled" name="beaver_builder_class_dropdown_options[select2_enabled]" type="checkbox" <?php checked( isset($options['select2_enabled']) ? $options['select2_enabled'] : 1 ); ?> />
-					<label for="select2_enabled">Enable Select2</label>
-				</p>
-			</section>
             <?php submit_button(); ?>
         </form>
-    </div>
+		<hr>
+		<section>
+			<h2>Export Settings</h2>
+			<button id="export-classes" class="button button-primary">Export Settings</button>
+		</section>
+		<hr>
+		<section>
+			<h2>Import Settings</h2>
+			<form action="" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
+			<input type="hidden" name="bb-class-action" value="import">
+			<?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
+            <?php do_settings_sections( 'beaver_builder_class_dropdown_options_group' ); ?>
+				Select import file:
+				<input type="file" name="fileToUpload" id="fileToUpload">
+				<?php submit_button( 'Upload JSON file' ); ?>
+
+			</form>
+		</section>
+	</div>
 
 	<svg xmlns="http://www.w3.org/2000/svg"  hidden id="icon-svg-container">
 		<symbol id="trash" viewBox="0 0 448 512" >
@@ -276,60 +289,78 @@ function bb_class_dropdown_admin_settings_save() {
 	// return early when not set or nonce not matching
 
     if ( !isset($_POST['bb-class-dd-nonce']) || !wp_verify_nonce($_POST['bb-class-dd-nonce'], 'bb-class-dd-nonce') ) return;
+	
+	$action = filter_input( INPUT_POST , 'bb-class-action' );
 
-	// use filter input
-	//$settings = filter_input_array( INPUT_POST , 'beaver_builder_class_dropdown_options' ); 
-	$settings = isset($_POST['beaver_builder_class_dropdown_options']) ? $_POST['beaver_builder_class_dropdown_options'] : array();
+	if ( 'update' == $action ) {
 
-	// Sanitize Select2 setting
-	$settings['select2_enabled'] = isset($settings['select2_enabled']) ? 1 : 0;
+		$settings = isset($_POST['beaver_builder_class_dropdown_options']) ? $_POST['beaver_builder_class_dropdown_options'] : array();
 
-	$group_order = 0;
-	// Sanitize each group and class setting
-	if (isset($settings['groups']) && is_array($settings['groups'])) {
-
-		foreach ($settings['groups'] as $group) {
-
-			// add our new group
-			$__new_groups[ $group_order ] = [];
-			
-			// set a name for this new group
-			$__new_groups[ $group_order ]['name'] = isset( $group['name'] ) ? sanitize_text_field( $group['name'] ) : "";
-
-			if (isset($group['classes']) && is_array($group['classes'])) {
-
-				// clear out our list of classes for this group
-				$classes = [];
+		$group_order = 0;
+		// Sanitize each group and class setting
+		if (isset($settings['groups']) && is_array($settings['groups'])) {
+	
+			foreach ($settings['groups'] as $group) {
+	
+				// add our new group
+				$__new_groups[ $group_order ] = [];
 				
-				// start class order at 0
-				$class_order = 0;
-				foreach ($group['classes'] as $class) {
-
-					$classes[] = array(
-								'id' => isset($class['id']) ? sanitize_text_field($class['id']) : "",
-								'name' => isset($class['name']) ? sanitize_text_field($class['name']) : "",
-								'order' => $class_order,
-					);
-					// increment class_order
-					$class_order++;
+				// set a name for this new group
+				$__new_groups[ $group_order ]['name'] = isset( $group['name'] ) ? sanitize_text_field( $group['name'] ) : "";
+	
+				if (isset($group['classes']) && is_array($group['classes'])) {
+	
+					// clear out our list of classes for this group
+					$classes = [];
+					
+					// start class order at 0
+					$class_order = 0;
+					foreach ($group['classes'] as $class) {
+	
+						$classes[] = array(
+									'id' => isset($class['id']) ? sanitize_text_field($class['id']) : "",
+									'name' => isset($class['name']) ? sanitize_text_field($class['name']) : "",
+									'order' => $class_order,
+						);
+						// increment class_order
+						$class_order++;
+					}
+	
+					// Replace the associative classes array with the sequential one
+					$__new_groups[ $group_order ]['classes'] = $classes;
+					$__new_groups[ $group_order ][ 'singleton' ] = isset( $group[ 'singleton' ] ) ? '1' : '0';
 				}
-
-				// Replace the associative classes array with the sequential one
-				$__new_groups[ $group_order ]['classes'] = $classes;
-				$__new_groups[ $group_order ][ 'singleton' ] = isset( $group[ 'singleton' ] ) ? '1' : '0';
+				$__new_groups[ $group_order ][ 'order' ] = $group_order;
+				
+				// increment group_order
+				$group_order++;
 			}
-			$__new_groups[ $group_order ][ 'order' ] = $group_order;
+	
+			$settings[ 'groups' ] = $__new_groups;
+
+			// Save to db
+			update_option('beaver_builder_class_dropdown_options', $settings);
 			
-			// increment group_order
-			$group_order++;
+		}
+	
+	} elseif ( 'import' == $action ) {
+
+		if ( isset($_FILES["fileToUpload"] ) && $_FILES[ 'fileToUpload' ][ 'tmp_name' ] !== '' ) {
+			$content = file_get_contents( $_FILES["fileToUpload"]["tmp_name"] );
+
+			try {
+				$json = json_decode( $content , true );
+			} catch ( \Exception $error) {
+				return false;
+			}
+			// Save to db
+			update_option('beaver_builder_class_dropdown_options', $json);
+
 		}
 
-		$settings[ 'groups' ] = $__new_groups;
-		
 	}
 
-	// Save to db
-	update_option('beaver_builder_class_dropdown_options', $settings);
+
 
 	FLBuilderModel::delete_asset_cache_for_all_posts();
     

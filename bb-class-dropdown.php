@@ -114,33 +114,18 @@ function bb_class_frontend_select2() {
 
     // no need to load this if BB isn't available or not in builder
     if ( !class_exists( 'FLBuilderModel' ) || !\FLBuilderModel::is_builder_active() ) return;
-    // no need to check on is_user_logged_in since the builder won't be active if he/she isn't.
-
-	// Get options
-	$options = get_option( 'beaver_builder_class_dropdown_options', array() );
-	$select2_enabled = isset($options['select2_enabled'] ) ? $options['select2_enabled'] : 0;
-    if ($select2_enabled) {
-        // Select2
-        if ( ! wp_script_is( 'select2', 'enqueued' ) ) {
-            // Enqueue the script.
-            wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array( 'jquery' ), '4.1.0', true );
-        }
     
-        if ( ! wp_style_is( 'select2', 'enqueued' ) ) {
-            // Enqueue the style.
-            wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0' );
-        }
+    // return early if select2 isn't loaded
+    if ( !apply_filters( 'fl_select2_enabled' , true ) ) return;
 
-
-        // Custom JS
-        wp_enqueue_script( 
-            'bb-class-dropdown-select2', 
-            BBCLASSDROPDOWN_URL . 'includes/js/bb-class-dropdown-select2.js', 
-            array( 'jquery', 'select2' ), 
-            BBCLASSDROPDOWN_VERSION, 
-            true 
-        );
-    }
+    // Custom JS
+    wp_enqueue_script( 
+        'bb-class-dropdown-select2', 
+        BBCLASSDROPDOWN_URL . 'includes/js/bb-class-dropdown-select2.js', 
+        array( 'jquery', 'select2' ), 
+        BBCLASSDROPDOWN_VERSION, 
+        true 
+    );
 }
 
 function enqueue_jquery_ui_sortable() {
