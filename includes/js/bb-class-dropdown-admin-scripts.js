@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
 			'	<td class="class-handle" valign="top">' +
 			'           <!-- Drag-and-drop handle -->' +
 			'           <div class="drag-handle"></div>' +
-			`			<input class="class-order" type="hidden" data-name="order" />` +
+			'           <input class="class-order" type="hidden" data-name="order" />' +
 			'	</td>' +
 			'   <td class="class-value-col"><input type="text" data-name="id" placeholder="foo-bar" value="" /></td>' +
 			'   <td class="class-label-col"><input type="text" data-name="name" placeholder="Foo Bar" value="" /></td>' +
@@ -241,6 +241,20 @@ jQuery(document).ready(function($) {
 	function date_format( date ) {
 		return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
 	}
+	
+	// Import Modal
+	const importModal = document.querySelector("#import-modal");
+	const openImportModal = document.querySelector("#import-classes");
+	const closeImportModal = document.querySelector("#close-import-modal");
+
+	openImportModal.addEventListener("click", () => {
+	  importModal.showModal();
+	});
+
+	closeImportModal.addEventListener("click", () => {
+	  importModal.close();
+	});
+
 
 	
 });
