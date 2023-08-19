@@ -108,26 +108,30 @@ function beaver_builder_class_dropdown_settings_page_html() {
 				</tbody>
 			</table>
 			<button type="button" class="button beaver-builder-class-dropdown-add-group">Add Group</button>
-            <?php submit_button(); ?>
+            <div id="main-submit-wrapper">
+				<?php submit_button(); ?>
+			</div>
         </form>
-		<hr>
-		<section>
-			<h2>Export Settings</h2>
-			<button id="export-classes" class="button button-primary">Export Settings</button>
-		</section>
-		<hr>
-		<section>
-			<h2>Import Settings</h2>
-			<form action="" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
-			<input type="hidden" name="bb-class-action" value="import">
-			<?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
-            <?php do_settings_sections( 'beaver_builder_class_dropdown_options_group' ); ?>
-				Select import file:
-				<input type="file" name="fileToUpload" id="fileToUpload">
-				<?php submit_button( 'Upload JSON file' ); ?>
-
-			</form>
+		<section id="bb-class-dd-settings">
+			<div id="bb-class-import-export-settings">
+				<h2>Import/Export Settings</h2>
+				<button id="export-classes" class="button button-primary">Export Settings</button>
+				<button id="import-classes" class="button button-primary">Import Settings</button>
+				<dialog id="import-modal">
+					<button id="close-import-modal" aria-label="Close Import Dialog">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<form action="" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
+						<input type="hidden" name="bb-class-action" value="import">
+						<?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
+					<?php do_settings_sections( 'beaver_builder_class_dropdown_options_group' ); ?>
+							<h3>Select JSON import file:</h3>
+							<input type="file" name="fileToUpload" id="fileToUpload" accept="application/JSON">
+							<?php submit_button( 'Import Settings' ); ?>
+					</form>
+				</dialog>
+			</div>
 		</section>
 	</div>
 
@@ -180,6 +184,7 @@ function beaver_builder_class_dropdown_settings_page_html() {
 		}
 		button.beaver-builder-class-dropdown-add-group{
 			margin-left: 32px !important;
+			margin-top: -20px !important;
 		}
 		button.button.beaver-builder-class-dropdown-remove-class,
 		button.button.beaver-builder-class-dropdown-remove-group{
@@ -280,6 +285,41 @@ function beaver_builder_class_dropdown_settings_page_html() {
 			position: absolute !important;
 			width: 1px !important;
 			white-space: nowrap !important;
+		}
+		#main-submit-wrapper .submit{
+			text-align:right;
+		}
+		/* Import Export */
+		#bb-class-dd-settings{
+			margin-top:80px;
+		}
+		#import-modal{
+			border: none;
+			border-radius:5px;
+			box-shadow: 0 5px 10px rgb(0 0 0 / .25);
+			overflow:visible;
+			padding:35px;
+		}
+		#import-modal::backdrop {
+		  background: rgb(0 0 0 / 0.4);
+		}
+		button#close-import-modal {
+			position: absolute;
+			top: -15px;
+			right: -15px;
+			height: 30px;
+			width: 30px;
+			border-radius: 50%;
+			border: 1px solid gray;
+			display: grid;
+			place-content: center;
+			line-height: 1;
+			cursor: pointer;
+			font-size: 17px;
+		}
+		#import-modal p.submit{
+			margin-top:0;
+			padding-bottom:0;
 		}
 	</style>
     <?php
