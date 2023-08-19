@@ -1,3 +1,6 @@
+*1.5.2 - 8/18/23*
+- Opening a secondary BB modal (like Post Module -> Custom Layout) would throw an error as the second modal assumed it was a module settings modal. Added more strict logic to look for the module settings modal
+
 *1.5.1 - 8/18/23*
 - JS refactoring by badabingbreda
 
