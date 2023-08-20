@@ -30,8 +30,8 @@ function beaver_builder_class_dropdown_settings_page_html() {
 				<thead>
 					<tr>
 						<th id="handle-th"></th> <!-- Empty th for the handle -->
-						<th id="group-name-th" scope="row"><?php esc_html_e( 'Group', 'textdomain' ); ?></th>
-						<th id="class-th"><?php esc_html_e( 'Class / Label', 'textdomain' ); ?></th>
+						<th id="group-name-th" scope="row"><?php esc_html_e( 'Group', 'BBClassDropdown' ); ?></th>
+						<th id="class-th"><?php esc_html_e( 'Class / Label', 'BBClassDropdown' ); ?></th>
 						<th id="button-th"></th> <!-- Empty th for the buttons -->
 					</tr>
 				</thead>
