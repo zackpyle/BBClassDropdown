@@ -8,7 +8,7 @@ function beaver_builder_class_dropdown_class_class_dropdown( $field, $field_key 
     // Process field
     if ( 'class' == $field_key && isset( $options['groups'] ) && is_array( $options['groups'] ) ) {
         $field['options'] = array(
-            '' => esc_html__( '- Choose from predefined classes -', 'textdomain' ),
+            '' => esc_html__( '- Choose from predefined classes -', 'BBClassDropdown' ),
         );
 
         foreach ( $options['groups'] as $group ) {
@@ -48,7 +48,7 @@ add_filter( 'fl_builder_field_js_config', 'beaver_builder_class_dropdown_class_c
 
 // Add plugin settings link to plugin listing
 function beaver_builder_class_dropdown_settings_link( $links ) {
-    $settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=beaver-builder-class-dropdown' ) ) . '">' . esc_html__( 'Settings', 'textdomain' ) . '</a>';
+    $settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=beaver-builder-class-dropdown' ) ) . '">' . esc_html__( 'Settings', 'BBClassDropdown' ) . '</a>';
     array_push( $links, $settings_link );
     return $links;
 }
