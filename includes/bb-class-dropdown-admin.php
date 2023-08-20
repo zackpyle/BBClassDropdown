@@ -21,7 +21,7 @@ function beaver_builder_class_dropdown_settings_page_html() {
 	
     <div id="fl-class-dropdown-form" class="fl-settings-form">
         <h1>Predefined Classes</h1>
-        <form action="" method="post">
+        <form action="" method="post" id="class-dropdown-form">
 			<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
 			<input type="hidden" name="bb-class-action" value="update">
             <?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
@@ -115,15 +115,15 @@ function beaver_builder_class_dropdown_settings_page_html() {
 		<section id="bb-class-dd-settings">
 			<div id="bb-class-import-export-settings">
 				<h2>Import/Export Settings</h2>
-				<button id="export-classes" class="button button-primary">Export Settings</button>
-				<button id="import-classes" class="button button-primary">Import Settings</button>
+				<button id="export-classes" class="button button-primary">Export Classes</button>
+				<button id="import-classes" class="button button-primary">Import Classes</button>
 				<dialog id="import-modal" onclick="event.target==this && this.close()">
 					<button id="close-import-modal" aria-label="Close Import Dialog">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<div class="modal-content">
 						<h3>Select JSON import file:</h3>
-						<form action="" method="post" enctype="multipart/form-data">
+						<form action="" method="post" enctype="multipart/form-data" id="class-import-form">
 							<input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
 							<input type="hidden" name="bb-class-action" value="import">
 							<?php settings_fields( 'beaver_builder_class_dropdown_options_group' ); ?>
@@ -134,6 +134,11 @@ function beaver_builder_class_dropdown_settings_page_html() {
 					</div>
 				</dialog>
 			</div>
+			<div id="bb-dropdown-reset-wrapper">
+				<h2>Reset Settings</h2>
+				<button id="reset-bb-dropdown-settings" class="button-link-delete button-secondary">Delete All Classes</button>
+			</div>
+			
 		</section>
 	</div>
 
@@ -186,7 +191,6 @@ function beaver_builder_class_dropdown_settings_page_html() {
 		}
 		button.beaver-builder-class-dropdown-add-group{
 			margin-left: 32px !important;
-			margin-top: -20px !important;
 		}
 		button.button.beaver-builder-class-dropdown-remove-class,
 		button.button.beaver-builder-class-dropdown-remove-group{
@@ -291,9 +295,17 @@ function beaver_builder_class_dropdown_settings_page_html() {
 		#main-submit-wrapper .submit{
 			text-align:right;
 		}
-		/* Import Export */
+		.wp-core-ui .button-link-delete.button-secondary {
+			border-color: currentColor;
+		}
+		#bb-dropdown-reset-wrapper{
+			margin-top:30px;
+		}
+		#bb-class-dd-settings h2{
+			font-weight:500;
+		}
 		
-		
+		/* Import Export */		
 		.modal-content{
 			padding:35px;
 		}
