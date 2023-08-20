@@ -4,15 +4,13 @@ namespace BBClassDropdown\Includes\Updater;
  * Github updater
  *
  * @example Github release body:
- * 	Tested: 6.1.1
+ * 	Tested: 6.3
  *	Icons: 1x|https://domainname.com/icon-256x256.png?rev=2818463,2x|https://domainname.com/icon-256x256.png?rev=2818463
  *  Banners: 1x|https://domainname.com/banner-720x250.png
  *	RequiresPHP: 7.0
  *
  *	|||
- *	Updated to UIkit version 3.11.1
- * 
- * @since  1.1.1
+ *	Add your changes here
  *
  */
 class GithubUpdater {
@@ -64,11 +62,11 @@ class GithubUpdater {
 		// set some defaults in case someone forgets to set these
 		$defaults = array(
 			'requires'			=> '5.4',
-			'tested'			=> '6.1.1',
+			'tested'			=> '6.3',
 			'rating'			=> '100.0',
-			'num_ratings'		=> '10',
-			'downloaded'		=> '10',
-			'added'				=> '2019-04-06',
+			'num_ratings'			=> '10',
+			'downloaded'			=> '10',
+			'added'				=> '2023-08-20',
 			'banners'			=> false,
 		);
 
