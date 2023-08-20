@@ -8,7 +8,7 @@ class Init {
 
         $updater = new GithubUpdater( BBCLASSDROPDOWN_FILE );
         $updater->set_username( 'zackpyle' );
-        $updater->set_repository( 'test' );
+        $updater->set_repository( 'BBClassDropdown' );
         $updater->set_settings( array(
                     'requires'			=> '5.1',
                     'tested'			=> '6.3',
