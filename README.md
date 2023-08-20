@@ -19,7 +19,7 @@ The last and what I think is the **best** feature is you also have the ability t
 
 ## Changelog
 
-*v1.0.0 - 8/20/23*
+*v1.0.1 - 8/20/23*
 - WP Updater connected so you can get the latest version pushed from Github straight to your WP install
 
 *v0.7.0-beta - 8/19/23*
