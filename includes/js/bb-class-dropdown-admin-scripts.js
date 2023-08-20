@@ -15,7 +15,8 @@ jQuery(document).ready(function($) {
 			   <td class="class-label-col"><input type="text" data-name="name" placeholder="Foo Bar" value="" /></td>
 			   <td class="class-btn-col"><button type="button" class="button beaver-builder-class-dropdown-remove-class"><svg aria-hidden="true" width="15" height="15"><use xlink:href="#trash" /></svg></button></td>
 			</tr>`,
-		// template for adding a class to a group
+		
+        // template for adding a class to a group
         group_template = `
 			<tr class="group">
 			   <td class="group-handle" valign="top">
@@ -44,23 +45,23 @@ jQuery(document).ready(function($) {
 			   </td>
 			</tr>`;
 
-	
+
     // Initialize events for group reordering
     bindGroupReorderEvent();
     bindClassReorderEvent();
 
     // Add new group
     $(document).on('click', '.beaver-builder-class-dropdown-add-group', handleAddGroup);
-	// Remove group
+    // Remove group
     $(document).on('click', '.beaver-builder-class-dropdown-remove-group', handleRemoveGroup);
-	// Add new class within a group
+    // Add new class within a group
     $(document).on('click', '.beaver-builder-class-dropdown-add-class', handleAddClass);
-	// Remove class within a group
+    // Remove class within a group
     $(document).on('click', '.beaver-builder-class-dropdown-remove-class', handleRemoveClass);
     // Main class form submit
-	$(document).on('submit', 'form#class-dropdown-form', handleFormSubmit);
+    $(document).on('submit', 'form#class-dropdown-form', handleFormSubmit);
     // Export Classes
-	$(document).on('click', '#export-classes', handleExportClasses);
+    $(document).on('click', '#export-classes', handleExportClasses);
 
     // Check if there are no groups on page load and call handleAddGroup() if needed - useful after clearing plugin settings
     if ($('.beaver-builder-class-dropdown-groups > tbody').children().length === 0) {
