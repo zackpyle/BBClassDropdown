@@ -1,3 +1,7 @@
+*1.7 - 8/19/23*
+- Previously you could only clear existing classes/settings manually via a url query param. Now there is a new Reset button in the settings section at the bottom of the page
+- After reset, new blank group is added so you don't have to click Add Group to get started
+
 *1.6.1 - 8/19/23*
 - Fixed - v1.5.2 patch forgot to include rows and columns in the secondary modal fix
 
