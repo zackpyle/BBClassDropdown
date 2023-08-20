@@ -16,6 +16,7 @@ The last and what I think is the **best** feature is you also have the ability t
 
 ![frontend-dropdown](https://github.com/zackpyle/BBClassDropdown/assets/19413506/82d05c71-f675-4480-be2d-64e42924a1e4)
 
+
 ## Changelog
 
 *v1.0.0 - 8/20/23*
@@ -23,10 +24,10 @@ The last and what I think is the **best** feature is you also have the ability t
 
 *v0.7.0-beta - 8/19/23*
 - Previously you could only clear existing classes/settings manually via a url query param. Now there is a new Reset button in the settings section at the bottom of the page
-- After reset, new blank group is added so you don't have to click Add Group to get started
+- After reset (and on initial activation), a new blank group is added so you don't have to click Add Group to get started
 
 *v0.6.1-beta - 8/19/23*
-- Fixed - v1.5.2 patch forgot to include rows and columns in the secondary modal fix
+- Fixed - v0.5.2 patch forgot to include rows and columns in the 'secondary modal' fix
 
 *v0.6.0-beta - 8/19/23*
 - New Import/Export Settings feature
