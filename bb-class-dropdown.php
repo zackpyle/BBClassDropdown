@@ -9,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name: Beaver Builder Class Dropdown
  * Description: Adds user defined CSS classes to dropdown below the Beaver Builder class input in the Advanced tab
- * Version:     1.6.1
+ * Version:     1.7
  * Author:      PYLE/DIGITAL
  * Text Domain: textdomain
  * License:     GPL-2.0+
@@ -17,7 +17,7 @@
  */
 
 
-define( 'BBCLASSDROPDOWN_VERSION', '1.6.1' );
+define( 'BBCLASSDROPDOWN_VERSION', '1.7' );
 define( 'BBCLASSDROPDOWN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BBCLASSDROPDOWN_FILE', __FILE__ );
 define( 'BBCLASSDROPDOWN_URL', plugins_url( '/', __FILE__ ) );
@@ -148,24 +148,6 @@ function beaver_builder_class_dropdown_plugin_activate() {
         wp_die( esc_html__( 'Sorry, but this plugin requires Beaver Builder.', 'textdomain' ) );
     }
 
-    // Default options
-    $default_options = array(
-        'groups' => array(
-            array(
-                'name' => 'My Group',
-                'classes' => array(
-                    array(
-                        'id' => 'my-class',
-                        'name' => 'My Class',
-                    ),
-                ),
-            ),
-        ),
-    );
-
-    // Add default options
-    add_option( 'beaver_builder_class_dropdown_options', $default_options );
-
     // Flush rewrite rules
     //flush_rewrite_rules();
 }
@@ -181,9 +163,11 @@ function beaver_builder_class_dropdown_plugin_activate() {
 function clear_bb_class_options() {
     if (isset($_GET['clear_bb_class_options'])) {
         delete_option('beaver_builder_class_dropdown_options');
-        echo esc_html__( 'Options cleared!', 'textdomain' );
-        die();
+        add_action('admin_notices', 'bb_class_options_reset_notice');
     }
+}
+function bb_class_options_reset_notice() {
+    echo '<div class="notice notice-success is-dismissible updated"><p>' . esc_html__('Classes reset!', 'textdomain') . '</p></div>';
 }
 
 /**
