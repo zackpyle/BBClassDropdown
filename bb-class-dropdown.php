@@ -4,24 +4,29 @@
  *
  * @package     BBClassDropdown
  * @author      PYLE/DIGITAL
- * @license     GPL-2.0+
+ * @license     GPL-3.0+
  *
  * @wordpress-plugin
  * Plugin Name: Beaver Builder Class Dropdown
- * Description: Adds user defined CSS classes to dropdown below the Beaver Builder class input in the Advanced tab
- * Version:     v0.7-beta
+ * Plugin URI:  https://github.com/zackpyle/BBClassDropdown
+ * Description: BB Class Dropdown adds user defined CSS classes to dropdown below the Beaver Builder class input in the Advanced tab
+ * Version:     1.0
  * Author:      PYLE/DIGITAL
- * Text Domain: textdomain
- * License:     GPL-2.0+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: BBClassDropdown
+ * License:     GPL-3.0+
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  */
 
 
-define( 'BBCLASSDROPDOWN_VERSION', '0.7' );
+define( 'BBCLASSDROPDOWN_VERSION', '1.0' );
 define( 'BBCLASSDROPDOWN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BBCLASSDROPDOWN_FILE', __FILE__ );
 define( 'BBCLASSDROPDOWN_URL', plugins_url( '/', __FILE__ ) );
 
+// Include Updater files
+require_once(BBCLASSDROPDOWN_DIR . 'includes/updater/Autoloader.php');
+require_once(BBCLASSDROPDOWN_DIR . 'includes/updater/GithubUpdater.php');
+require_once(BBCLASSDROPDOWN_DIR . 'includes/updater/Init.php');
 
 // Include plugin files
 require_once( BBCLASSDROPDOWN_DIR . 'includes/bb-class-dropdown-functions.php');
@@ -29,6 +34,8 @@ require_once( BBCLASSDROPDOWN_DIR . 'includes/bb-class-dropdown-admin.php');
 
 register_activation_hook( BBCLASSDROPDOWN_FILE, 'beaver_builder_class_dropdown_plugin_activate' );
 
+// Initialize updater
+new BBClassDropdown\Includes\Updater\Init();
 
 add_action( 'init', 'maybe_load_scripts' );
 add_action( 'init', 'clear_bb_class_options' );
@@ -145,7 +152,7 @@ function beaver_builder_class_dropdown_plugin_activate() {
     // Check if Beaver Builder is active
     if ( ! class_exists( 'FLBuilder' ) ) {
         deactivate_plugins( plugin_basename( __FILE__ ) );
-        wp_die( esc_html__( 'Sorry, but this plugin requires Beaver Builder.', 'textdomain' ) );
+        wp_die( esc_html__( 'Sorry, but this plugin requires Beaver Builder.', 'BBClassDropdown' ) );
     }
 
     // Flush rewrite rules
@@ -167,7 +174,7 @@ function clear_bb_class_options() {
     }
 }
 function bb_class_options_reset_notice() {
-    echo '<div class="notice notice-success is-dismissible updated"><p>' . esc_html__('Classes reset!', 'textdomain') . '</p></div>';
+    echo '<div class="notice notice-success is-dismissible updated"><p>' . esc_html__('Classes reset!', 'BBClassDropdown') . '</p></div>';
 }
 
 /**
