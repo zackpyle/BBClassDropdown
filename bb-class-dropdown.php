@@ -12,6 +12,7 @@
  * Description: BB Class Dropdown adds user defined CSS classes to dropdown below the Beaver Builder class input in the Advanced tab
  * Version:     1.0.2
  * Author:      PYLE/DIGITAL
+ * Author URI: 	https://github.com/zackpyle
  * Text Domain: BBClassDropdown
  * License:     GPL-3.0+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
