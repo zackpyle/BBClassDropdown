@@ -19,6 +19,10 @@ The last and what I think is the **best** feature is you also have the ability t
 
 ## Changelog
 
+*v1.0.2 - 8/21/23*
+- fix error when opening other settings panels
+- moved all functions to BBClassDropdown
+
 *v1.0.1 - 8/20/23*
 - WP Updater connected so you can get the latest version pushed from Github straight to your WP install
 
