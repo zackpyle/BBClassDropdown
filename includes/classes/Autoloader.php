@@ -6,7 +6,7 @@
  * @since 1.0.0
  */
 
-namespace BBClassDropdown\Includes\Updater;
+namespace BBClassDropdown;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -86,6 +86,6 @@ class Autoloader {
 		$relative_class_path = substr( $class, strlen( self::AUTOLOADED_NAMESPACE_PREFIX ) );
 		$relative_file_path = str_replace( '\\', '/', $relative_class_path ) . '.php';
 
-		return dirname( BBCLASSDROPDOWN_FILE ) . '/includes/Updater/' . $relative_file_path;
+		return dirname( BBCLASSDROPDOWN_FILE ) . '/includes/classes/' . $relative_file_path;
 	}
 }

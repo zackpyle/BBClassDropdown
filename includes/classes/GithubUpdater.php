@@ -1,5 +1,5 @@
 <?php
-namespace BBClassDropdown\Includes\Updater;
+namespace BBClassDropdown;
 /**
  * Github updater
  *
