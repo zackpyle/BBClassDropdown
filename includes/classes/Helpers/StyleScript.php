@@ -39,6 +39,12 @@ class StyleScript {
         // no need to load this if BB isn't available
         if ( !class_exists( 'FLBuilderModel' ) ) return;
 
+		// only load script when on fl-builder-settings pages
+		if ( !isset( $_REQUEST['page'] ) || 'fl-builder-settings' !== $_REQUEST['page'] ) {
+            return;
+        }
+
+
         wp_enqueue_script( 
             'bb-class-dropdown-scripts', 
             BBCLASSDROPDOWN_URL . 'includes/js/bb-class-dropdown-admin-scripts.js', 
