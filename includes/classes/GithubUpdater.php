@@ -209,7 +209,7 @@ class GithubUpdater {
 	 */
 	private function get_tmpfile_data( $string ) {
 
-		$temp = tmpfile();
+		$temp = \tmpfile();
 		$tmpfilename = stream_get_meta_data($temp)['uri'];
 		fwrite( $temp, $string);
 
