@@ -209,7 +209,8 @@ class GithubUpdater {
 	 */
 	private function get_tmpfile_data( $string ) {
 
-		$temp = tmpfile();
+		$temp_file = wp_tempnam();
+		$temp = fopen($temp_file, 'r+');
 		$tmpfilename = stream_get_meta_data($temp)['uri'];
 		fwrite( $temp, $string);
 
