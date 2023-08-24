@@ -78,7 +78,7 @@ class BeaverBuilder {
      * @return void
      */
     public static function class_dropdown_settings_link( $links ) {
-        $settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=beaver-builder-class-dropdown' ) ) . '">' . esc_html__( 'Settings', 'BBClassDropdown' ) . '</a>';
+        $settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=fl-builder-settings#class-dropdown' ) ) . '">' . esc_html__( 'Settings', 'BBClassDropdown' ) . '</a>';
         array_push( $links, $settings_link );
         return $links;
     }
