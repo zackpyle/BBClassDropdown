@@ -19,6 +19,13 @@ The last and what I think is the **best** feature is you also have the ability t
 
 ## Changelog
 
+*v1.0.3 - 8/24/23*
+- Split up the plugin in functional classes and made it namespaced
+- An autoloader takes care of loading/include_once/require_once the files
+- Load admin script on fl-builder-settings page
+- Fixed fatal error on plugins page (issue #19) - Updater fixed with wp_tempnam and unlink method
+- Fixed reorder class bug (issue #21) - Couldn't reorder classes on new groups before hitting save
+
 *v1.0.2 - 8/21/23*
 - Fix error when opening other settings panels
 - Moved all functions to BBClassDropdown

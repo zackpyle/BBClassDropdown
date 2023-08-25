@@ -1,5 +1,5 @@
 <?php
-namespace BBClassDropdown\Includes\Updater;
+namespace BBClassDropdown;
 /**
  * Github updater
  *
@@ -209,8 +209,16 @@ class GithubUpdater {
 	 */
 	private function get_tmpfile_data( $string ) {
 
+
+		// create a wp temp file in the 
 		$temp_file = wp_tempnam();
 		$temp = fopen($temp_file, 'r+');
+		
+		// make sure to also delete the file when done or even when scripts fail
+		register_shutdown_function( function() use( $temp_file ) {
+			@unlink( $temp_file );
+		} );		
+
 		$tmpfilename = stream_get_meta_data($temp)['uri'];
 		fwrite( $temp, $string);
 
@@ -261,8 +269,8 @@ class GithubUpdater {
 			'updates' => $updates,
         ];
 
-		// close our temp file again
-		fclose($temp);
+		// the register_shutdown function will also make sure the temp-file
+		// gets deleted whenever something fails
 
         return $data;
 
