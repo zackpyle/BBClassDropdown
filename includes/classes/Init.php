@@ -1,11 +1,32 @@
 <?php
-namespace BBClassDropdown\Includes\Updater;
-use BBClassDropdown\Includes\Updater\GithubUpdater;
+namespace BBClassDropdown;
+
+use BBClassDropdown\GithubUpdater;
+
+use BBClassDropdown\Helpers\Activation;
+use BBClassDropdown\Helpers\AdminSettings;
+use BBClassDropdown\Helpers\StyleScript;
+use BBClassDropdown\Integration\BeaverBuilder;
 
 class Init {
 
     public function __construct() {
 
+        self::init_updater();
+
+        new Activation();
+        new AdminSettings();
+        new StyleScript();
+        new BeaverBuilder();
+        
+    }
+        
+    /**
+     * updater
+     *
+     * @return void
+     */
+    public static function init_updater() {
         $updater = new GithubUpdater( BBCLASSDROPDOWN_FILE );
         $updater->set_username( 'zackpyle' );
         $updater->set_repository( 'BBClassDropdown' );
@@ -18,6 +39,6 @@ class Init {
                     'added'				=> '2023-08-20',
                 ) );
         $updater->initialize();
-       
+
     }
 }
