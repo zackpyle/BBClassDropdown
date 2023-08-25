@@ -23,7 +23,8 @@ The last and what I think is the **best** feature is you also have the ability t
 - Split up the plugin in functional classes and made it namespaced
 - An autoloader takes care of loading/include_once/require_once the files
 - Load admin script on fl-builder-settings page
-- Updater fixed with wp_tempnam and unlink method 
+- Updater fixed with wp_tempnam and unlink method
+- Fixed reorder class bug - couldn't reorder classes on new groups before hitting save
 
 *v1.0.2 - 8/21/23*
 - Fix error when opening other settings panels
