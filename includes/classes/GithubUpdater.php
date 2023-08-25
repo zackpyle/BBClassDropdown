@@ -271,7 +271,6 @@ class GithubUpdater {
 
 		// the register_shutdown function will also make sure the temp-file
 		// gets deleted whenever something fails
-		unlink($temp_file);
 
         return $data;
 
