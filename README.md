@@ -20,6 +20,9 @@ The last and what I think is the **best** feature is you also have the ability t
 ## Changelog
 
 *v1.0.3 - 8/24/23*
+- Remove select2 as it was causing a scrolling bug in the settings modal (issue #23)
+
+*v1.0.3 - 8/24/23*
 - Split up the plugin in functional classes and made it namespaced
 - An autoloader takes care of loading/include_once/require_once the files
 - Load admin script on fl-builder-settings page
