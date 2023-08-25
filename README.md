@@ -19,7 +19,7 @@ The last and what I think is the **best** feature is you also have the ability t
 
 ## Changelog
 
-*v1.0.3 - 8/24/23*
+*v1.0.4 - 8/25/23*
 - Remove select2 as it was causing a scrolling bug in the settings modal (issue #23)
 
 *v1.0.3 - 8/24/23*
