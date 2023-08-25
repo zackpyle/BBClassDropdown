@@ -86,6 +86,7 @@ jQuery(document).ready(function($) {
      */
     function handleAddGroup() {
         $('.beaver-builder-class-dropdown-groups > tbody').append(group_template);
+        bindClassReorderEvent();        
     }
 
     /**
