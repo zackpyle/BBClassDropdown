@@ -21,7 +21,7 @@ class StyleScript {
     
             add_action( 'admin_enqueue_scripts',                    __CLASS__ . '::class_dropdown_enqueue_scripts' );
             add_action( 'wp_enqueue_scripts',                       __CLASS__ . '::bb_class_frontend_scripts' );
-            add_action( 'wp_enqueue_scripts',                       __CLASS__ . '::bb_class_frontend_select2' );
+            // add_action( 'wp_enqueue_scripts',                       __CLASS__ . '::bb_class_frontend_select2' );
             
             // Enqueue jQuery UI for admin area
             add_action('admin_enqueue_scripts',                     __CLASS__ . '::enqueue_jquery_ui_sortable');
