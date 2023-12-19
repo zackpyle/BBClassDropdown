@@ -48,7 +48,7 @@ if ( ! class_exists( 'BBClassDropdown\Init' ) ) {
     /**
      * The file where the Autoloader class is defined.
      */
-    require_once 'includes/classes/Autoloader.php';
+    require_once BBCLASSDROPDOWN_DIR . 'includes/classes/Autoloader.php';
     spl_autoload_register( array( new Autoloader(), 'autoload' ) );
  
     $plugin_var = new Init();
