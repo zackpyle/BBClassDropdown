@@ -19,6 +19,9 @@ The last and what I think is the **best** feature is you also have the ability t
 
 ## Changelog
 
+*v1.0.5 - 12/19/23*
+- Fix allows `&`, `<`, `>`, `"`, and `'` characters in label field
+
 *v1.0.4 - 8/25/23*
 - Remove select2 as it was causing a scrolling bug in the settings modal (issue #23)
 
