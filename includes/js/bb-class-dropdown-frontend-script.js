@@ -28,7 +28,8 @@ const BBClassDropdown = {
 		const classDropdown = parent.window.document.querySelector( '[data-target="class"]' );
 		for(const group in BBClassOptions.options.groups) {
 			let groupData = BBClassOptions.options.groups[group];
-			let optGroupElement = classDropdown.querySelector( `optgroup[label="${groupData.name}"]` );
+			var optgroupName = BBClassDropdown.convertHTML(groupData.name);
+			let optGroupElement = classDropdown.querySelector( `optgroup[label="${optgroupName}"]` );
 			optGroupElement.setAttribute( 'groupname' , groupData.name );
             		// check if typeof because if it isn't it doesn't exist!
 			if ( typeof groupData.singleton !== 'undefined' && groupData.singleton == 1 ) {
@@ -187,6 +188,25 @@ const BBClassDropdown = {
 		dropdown.val(''); // Resetting the selector
 		// console.log( 'method handleDropdownSelection ran' );
 	},
+
+	/**
+	 * replace some chars to prevent code from breaking
+	 * @param {*} str 
+	 * @returns 
+	 */
+	convertHTML: function (str) {
+		let replacements = {
+		  "&": "&amp;",
+		  "<": "&lt;",
+		  ">": "&gt;",
+		  '"': "&quot;",
+		  "'": "&apos;",
+		  "<>": "&lt;&gt;",
+		}
+		return str.replace(/(&|<|>|"|'|<>)/gi, function(noe) {
+		  return replacements[noe];
+		});
+	  } 
 	
 };
 
