@@ -32,7 +32,7 @@ class BeaverBuilder {
         // Process field
         if ( 'class' == $field_key && isset( $options['groups'] ) && is_array( $options['groups'] ) ) {
             $field['options'] = array(
-                '' => esc_html__( '- Choose from predefined classes -', 'BBClassDropdown' ),
+                '' => esc_html__( '- Choose from utility classes -', 'BBClassDropdown' ),
             );
 
             foreach ( $options['groups'] as $group ) {
@@ -94,7 +94,7 @@ class BeaverBuilder {
     public static function class_dropdown_menu_item($navitems)
     {
         $navitems['class-dropdown'] = array(
-            'title'=> 'Predefined Classes',
+            'title'=> 'Utility Classes',
             'show'  => true,
             'priority'  => 695
         );
