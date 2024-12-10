@@ -59,7 +59,7 @@ class AdminSettings {
         ?>
         
         <div id="fl-class-dropdown-form" class="fl-settings-form">
-            <h1>Predefined Classes</h1>
+            <h1>Utility Classes</h1>
             <form action="" method="post" id="class-dropdown-form">
                 <input type="hidden" name="bb-class-dd-nonce" value="<?php echo wp_create_nonce('bb-class-dd-nonce'); ?>">
                 <input type="hidden" name="bb-class-action" value="update">
