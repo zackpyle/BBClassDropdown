@@ -10,7 +10,7 @@
  * Plugin Name: Beaver Builder Class Dropdown
  * Plugin URI:  https://github.com/zackpyle/BBClassDropdown
  * Description: BB Class Dropdown adds user defined CSS classes to dropdown below the Beaver Builder class input in the Advanced tab
- * Version:     1.0.5
+ * Version:     1.0.6
  * Author:      PYLE/DIGITAL
  * Author URI: 	https://github.com/zackpyle
  * Text Domain: BBClassDropdown
