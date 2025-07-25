@@ -268,9 +268,6 @@ class AdminSettings {
             .fl-settings-form .beaver-builder-class-dropdown-groups td {
                 padding: 0;
             }
-            #select2-settings{
-                margin-top: 60px;
-            }
             .single-select-wrapper{
                 margin-top:10px;
             }

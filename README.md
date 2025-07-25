@@ -19,6 +19,12 @@ The last and what I think is the **best** feature is you also have the ability t
 
 ## Changelog
 
+*v1.0.8 - 7/25/25*
+- Now compatible with Beaver Builder v2.10+ Components
+
+*v1.0.7 - 3/24/25*
+- Fixed Fatal Error in GitHub Updater in some versions of PHP
+
 *v1.0.6 - 12/10/24*
 - Updated README for clarity
 - Updated the term 'Predefined' to 'Utility'
