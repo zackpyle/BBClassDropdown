@@ -16,8 +16,25 @@ The last and what I think is the **best** feature is you also have the ability t
 
 ![frontend-dropdown](https://github.com/user-attachments/assets/cade8322-0528-4760-b615-6ed7291e8839)
 
+<br><br>
 
-## Changelog
+## Upgrade to Beaver Builder Component Class Dropdown
+
+If you find this utility class plugin helpful, you might also be interested in our companion plugin for component-based workflows with the new Beaver Builder Components system.
+
+### Beaver Builder Component Class Dropdown
+This plugin works with Beaver Builder v2.10+ and its component system to provide **component-specific class selection**.
+
+It lets you define utility classes for specific components, keeping component-specific classes separate from global utility classes. For example, button classes (`btn-outline`, `btn-arrow`, etc.) don't make sense showing up on heading modules.
+
+**Learn more:** [Component Class Dropdown Guide](link-to-my-post)  
+**Get access:** Available exclusively to [SnippetNest subscribers](https://snippetnest.com/join/)
+
+<br><br>
+--- 
+<br><br> 
+
+## Beaver Builder Class Dropdown Changelog
 
 *v1.0.8 - 7/25/25*
 - Now compatible with Beaver Builder v2.10+ Components
